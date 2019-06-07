@@ -20,21 +20,19 @@ type Props = {};
 //let taskList = ;
 export default class App extends Component<Props> {
 
-	/*
+	
 	constructor() {
 		super();
-		this.state = {
-			status: false
-		};
+		this.state = {status: false, data: []}
 	}
-	*/
+
 
 	editTaskList(text) {
 		this.state.data.push(text);
 		this.render();
 	}
 	
-	state = {status: false, data: []}
+	
 
 	_onPressButton() {
 		//Alert.alert('You tapped button!')
@@ -53,7 +51,16 @@ export default class App extends Component<Props> {
 	    	<View style={{flex:0.5, alignItems: 'center', backgroundColor: 'turquoise'}}>
 	    		<FlatList
 	    			data={this.state.data}
-	    			renderItem = {({item}) => <Text style ={{fontSize: 25}}>{item}</Text>}
+	    			renderItem = {({item}) => 
+	    			<View style = {{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
+	    				<View style={{height:25, width: 25, alignItems: 'center', backgroundColor: 'white'}}>
+		    				<Button
+		    					title = ""
+		    					color = "black"
+		    				/>
+		    			</View>
+	    				<Text style ={{fontSize: 25}}>{item}</Text>
+	    			</View>}
 	    		/>
 	    	</View>
 		    		
