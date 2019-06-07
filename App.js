@@ -7,7 +7,7 @@
  */
 
 import React, {Component} from 'react';
-import {AlertIOS, AppRegistry, TextInput, Alert, Button, SectionList, FlatList, Platform, StyleSheet, Text, View, ScrollView} from 'react-native';
+import {AlertIOS, AppRegistry, TouchableOpacity, TextInput, Alert, Button, SectionList, FlatList, Platform, StyleSheet, Text, View, ScrollView} from 'react-native';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -37,41 +37,47 @@ export default class App extends Component<Props> {
 	_onPressButton() {
 		//Alert.alert('You tapped button!')
 		//this.setState({status: true});
-		AlertIOS.prompt('Enter a task', null, (text) => this.editTaskList(text));
+		AlertIOS.prompt('Add Reminder', null, (text) => this.editTaskList(text));
+	}
+
+	_onPressSmallButton() {
+
 	}
 	
 
   render() {
     return (
     	<View style = {{flex: 1, flexDirection: 'column', justifyContent: 'space-between'}}> 
-	    	<View style={{flex: 0.3, alignItems: 'center', backgroundColor: 'blue'}}>
-	    		<Text style={{fontSize: 50, top: 150}}>Reminders</Text> 
+	    	<View style={{flex: 0.3, backgroundColor: '#6495ED'}}>
+	    		<Text style={{fontFamily: 'Avenir-Heavy', fontSize: 50, top: 110, margin: 35, color: 'white'}}>Reminders</Text> 
 	    	</View>
 
-	    	<View style={{flex:0.5, alignItems: 'center', backgroundColor: 'turquoise'}}>
+	    	<View style={{flex:0.5, alignItems: 'center', backgroundColor: 'white'}}>
 	    		<FlatList
 	    			data={this.state.data}
 	    			renderItem = {({item}) => 
-	    			<View style = {{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
-	    				<View style={{height:25, width: 25, alignItems: 'center', backgroundColor: 'white'}}>
+	    			<View style = {{flex: 0.1, flexDirection: 'row', justifyContent: 'flex-start'}}>
+	    				<View style={{height:25, width: 25, marginRight: 10, backgroundColor: '#778899'}}>
 		    				<Button
 		    					title = ""
 		    					color = "black"
+		    					onPress = {(item) => this._onPressSmallButton(item)}
 		    				/>
 		    			</View>
-	    				<Text style ={{fontSize: 25}}>{item}</Text>
+	    				<Text style ={{fontSize: 25, marginRight: 50, fontFamily:'Avenir-Heavy'}}>{item}</Text>
 	    			</View>}
 	    		/>
 	    	</View>
 		    		
 
 	    	<View style = {{flex: 0.1, margin: 20, alignItems: 'flex-end'}}>
-		    	<View style={{height: 50, width: 50, alignItems: 'center', backgroundColor: 'red'}}>
-		    		<Button
+		    	<View style={{height: 50, width: 50, borderRadius: 25, alignItems: 'center', backgroundColor: '#6495ED'}}>
+		    		<TouchableOpacity
 		    			onPress = {(item) => this._onPressButton(item)}
-		    			title = "+"
-		    			color = "black"
-		    		/>
+		    			color = "white"
+		    		>
+		    			<Text style={{fontSize: 36, color: 'white'}}>+</Text>
+		    		</TouchableOpacity>
 		    	</View>
 		    </View>
     	</View>
