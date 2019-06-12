@@ -28,8 +28,10 @@ export default class App extends Component<Props> {
 
 
 	editTaskList(text) {
-		this.state.data.push(text);
-		this.render();
+		const newData = this.state.data.concat(text)
+		this.setState({data: newData})
+		//this.state.data.push(text); -> you can't actually you use the push mehtod to alter state data 
+		//this.render(); -> this also doesn't reload the state! 
 	}
 	
 	
