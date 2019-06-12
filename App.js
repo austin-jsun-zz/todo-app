@@ -40,43 +40,45 @@ export default class App extends Component<Props> {
 		AlertIOS.prompt('Add Reminder', null, (text) => this.editTaskList(text));
 	}
 
-	_onPressSmallButton() {
-
+	_onPressSmallButton(item) {
+		if(item.color === "black") {
+			item.color === "white"
+		}
 	}
 	
 
   render() {
     return (
-    	<View style = {{flex: 1, flexDirection: 'column', justifyContent: 'space-between'}}> 
-	    	<View style={{flex: 0.3, backgroundColor: '#6495ED'}}>
-	    		<Text style={{fontFamily: 'Avenir-Heavy', fontSize: 50, top: 110, margin: 35, color: 'white'}}>Reminders</Text> 
+    	<View style = {styles.container}> 
+	    	<View style={styles.titleBackground}>
+	    		<Text style={styles.title}>Reminders</Text> 
 	    	</View>
 
-	    	<View style={{flex:0.5, alignItems: 'center', backgroundColor: 'white'}}>
+	    	<View style={styles.listBackground}>
 	    		<FlatList
 	    			data={this.state.data}
 	    			renderItem = {({item}) => 
-	    			<View style = {{flex: 0.1, flexDirection: 'row', justifyContent: 'flex-start'}}>
-	    				<View style={{height:25, width: 25, marginRight: 10, backgroundColor: '#778899'}}>
+	    			<View style = {styles.listItem}>
+	    				<View style={styles.listButton}>
 		    				<Button
-		    					title = ""
+		    					title = "O"
 		    					color = "black"
 		    					onPress = {(item) => this._onPressSmallButton(item)}
 		    				/>
 		    			</View>
-	    				<Text style ={{fontSize: 25, marginRight: 50, fontFamily:'Avenir-Heavy'}}>{item}</Text>
+	    				<Text style ={styles.listItemText}>{item}</Text>
 	    			</View>}
 	    		/>
 	    	</View>
 		    		
 
-	    	<View style = {{flex: 0.1, margin: 20, alignItems: 'flex-end'}}>
-		    	<View style={{height: 50, width: 50, borderRadius: 25, alignItems: 'center', backgroundColor: '#6495ED'}}>
+	    	<View style = {styles.buttonView}>
+		    	<View style={styles.buttonBackground}>
 		    		<TouchableOpacity
 		    			onPress = {(item) => this._onPressButton(item)}
 		    			color = "white"
 		    		>
-		    			<Text style={{fontSize: 36, color: 'white'}}>+</Text>
+		    			<Text style={styles.plusButton}>+</Text>
 		    		</TouchableOpacity>
 		    	</View>
 		    </View>
@@ -88,18 +90,55 @@ export default class App extends Component<Props> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+  titleBackground: {
+    flex: 0.3, 
+    backgroundColor: '#6495ED'
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+  title: {
+    fontFamily: 'Avenir-Heavy', 
+    fontSize: 50, 
+    top: 110, 
+    margin: 35, 
+    color: 'white'
   },
+  listBackground: {
+  	flex:0.5, 
+  	alignItems: 'center', 
+  	backgroundColor: 'white'
+  },
+  listItem: {
+  	flex: 0.1, 
+  	flexDirection: 'row', 
+  	justifyContent: 'flex-start'
+  },
+  listButton: {
+  	height:25, 
+  	width: 25, 
+  	marginRight: 10, 
+  	backgroundColor: '#778899'
+  },
+  listItemText: {
+  	fontSize: 25, 
+  	marginRight: 50, 
+  	fontFamily:'Avenir-Heavy'
+  },
+  buttonView: {
+  	flex: 0.1, 
+  	margin: 20, 
+  	alignItems: 'flex-end'
+  },
+  buttonBackground: {
+  	height: 50, 
+  	width: 50, 
+  	borderRadius: 25, 
+  	alignItems: 'center', 
+  	backgroundColor: '#6495ED'
+  },
+  plusButton: {
+  	fontSize: 36, 
+  	color: 'white'
+  }
 });
