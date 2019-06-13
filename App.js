@@ -71,7 +71,7 @@ export default class App extends Component<Props> {
 	    			<View style = {styles.listItem}>
 	    				<View style={styles.listButton}>
 		    				<Button
-		    					title = "O"
+		    					title = ""
 		    					color = "black"
 		    					onPress = {(item) => this._onPressSmallButton(item)}
 		    				/>
