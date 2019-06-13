@@ -7,7 +7,7 @@
  */
 
 import React, {Component} from 'react';
-import {AlertIOS, AppRegistry, TouchableOpacity, TextInput, Alert, Button, SectionList, FlatList, Platform, StyleSheet, Text, View, ScrollView} from 'react-native';
+import {AsyncStorage, AlertIOS, AppRegistry, TouchableOpacity, TextInput, Alert, Button, SectionList, FlatList, Platform, StyleSheet, Text, View, ScrollView} from 'react-native';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -21,9 +21,17 @@ type Props = {};
 export default class App extends Component<Props> {
 
 	
+
 	constructor() {
-		super();
-		this.state = {status: false, data: []}
+		super();		
+		this.state = {status: false, data: []};
+		this.displayData();
+	}
+
+	displayData = async() => {
+		let retrieved = await AsyncStorage.getItem('saveData');
+		let parsed = JSON.parse(retrieved);
+		this.setState({data: parsed});
 	}
 
 
@@ -32,6 +40,7 @@ export default class App extends Component<Props> {
 		this.setState({data: newData})
 		//this.state.data.push(text); -> you can't actually you use the push mehtod to alter state data 
 		//this.render(); -> this also doesn't reload the state! 
+		AsyncStorage.setItem('saveData', JSON.stringify(this.state.data))
 	}
 	
 	
