@@ -43,7 +43,6 @@ export default class App extends Component<Props> {
 		AsyncStorage.setItem('saveData', JSON.stringify(this.state.data))
 	}
 	
-	
 
 	_onPressButton() {
 		//Alert.alert('You tapped button!')
