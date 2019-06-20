@@ -76,7 +76,7 @@ export default class App extends Component<Props> {
 	    			<View style = {styles.listItem}>
 	    				<View style={item.taskComplete? styles.otherButton : styles.listButton}>
 		    				<Button
-		    					title = "o"
+		    					title = ""
 		    					color = "black"
 		    					onPress = {() => this._onPressSmallButton(item)}
 		    				/>
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
   	height:25,
   	width: 25,
   	marginRight: 10,
-  	backgroundColor: 'blue'
+  	backgroundColor: 'green'
   },
   listItemText: {
   	fontSize: 25,
