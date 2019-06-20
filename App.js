@@ -51,8 +51,13 @@ export default class App extends Component<Props> {
 	}
 
 	_onPressSmallButton(item) {
-		item.taskComplete = true;
-    const newData = this.state.data;
+		//item.taskComplete = true;
+    //NEVER edit this.state directly, treat it as immutable and then
+    //update it by making an array copy and changing that array then setting
+    //your new state
+    let newData = [...this.state.data];
+    let index = newData.findIndex(el => el === item);
+    newData[index].taskComplete = !newData[index].taskComplete;
     this.setState({data: newData});
 	}
 
